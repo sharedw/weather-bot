@@ -46,7 +46,6 @@ class DataSaver():
 
     def insert_data(self, record):
         df = pd.DataFrame([record])
-        #print(df)
         self.con.register('new_data', df)
         self.con.execute(f'INSERT INTO {self.TABLE_NAME} SELECT * FROM new_data')
         df = self.con.sql('select * from observations').df()

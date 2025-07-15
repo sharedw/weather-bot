@@ -1,7 +1,5 @@
 import requests  # noqa
 import yaml
-import json
-
 
 class DataFetcher():
     
@@ -16,7 +14,6 @@ class DataFetcher():
         response = requests.get(url, params=params)
         if response.status_code == 200:
             curr_data = response.json()[0]["lastData"]
-            print(curr_data)
         else:
             print("Error:", response.status_code, response.text)
 
@@ -45,9 +42,10 @@ class DataFetcher():
         curr_data.update(self.fetch_weatherapi_data())
         return curr_data
     
+
+'''
 dfetcher = DataFetcher()
 curr_data = dfetcher.fetch_all()
-
 with open('sample_data.json', 'w') as f:
     json.dump(curr_data, f, indent=2)
-
+'''
