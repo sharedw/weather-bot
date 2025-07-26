@@ -34,15 +34,39 @@ class DataDrawer():
         small_font = ImageFont.truetype(small_font_path, 24)
 
         # Title
-        draw.text((400, 20), f"Weather - {CITY}", font=title_font, fill=0, anchor="mm")
+        draw.text((400, 20), f"{CITY}", font=title_font, fill=0, anchor="mm")
+
+        #alerts
+        print(curr_data)
+        if curr_data['alert'] != "":
+            draw.text(
+                (W/2, 60),
+                f"{curr_data['alert']}",
+                font=ImageFont.truetype(small_font_path, 16),
+                fill=0,
+                anchor="mm",
+            )
+
+        #description
+        draw.text(
+            (W/2, 140),
+            f"{curr_data['text']}",
+            font=small_font,
+            fill=0,
+            anchor="mm",
+        )
 
         # Main Temp
         draw.text(
-            (400, 120), f"{curr_data['tempf']}°F", font=large_font, fill=0, anchor="mm"
+            (400, 100), f"{curr_data['tempf']}°F", font=large_font, fill=0, anchor="mm"
         )
 
+        weather_icon = Image.open('icons/day/partly_cloudy.png').convert("RGBA").resize((75, 75), Image.NEAREST)
+        image.paste(weather_icon, (550,80), weather_icon)
+
         # Divider
-        draw.line([(100, 190), (700, 190)], fill=0, width=2)
+        draw.line([(100, 160), (700, 160)], fill=0, width=2)
+        draw.line([(400, 160), (400, 480)], fill=0, width=2)
 
         # Other Stats
         draw.text(
@@ -60,22 +84,7 @@ class DataDrawer():
             anchor="mm",
         )
         
-        draw.text(
-            (W/2, 60),
-            f"{curr_data['text']}",
-            font=small_font,
-            fill=0,
-            anchor="mm",
-        )
 
-        if curr_data['alert'] != "":
-            draw.text(
-                (W/2, 60),
-                f"{curr_data['alert']}",
-                font=ImageFont.truetype(small_font_path, 16),
-                fill=0,
-                anchor="mm",
-            )
         epd.display(epd.getbuffer(image))
         sleep(3)
         epd.Clear()
