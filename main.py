@@ -1,24 +1,21 @@
-import requests  # noqa
 from DataHandler import DataHandler
 from Draw import DataDrawer
-from time import sleep
-
-
-
+from time import sleep # noqa
 
 print("File opened...")
 if __name__ == "__main__":
-
-    print('Main function started...')
+    print("Main function started...")
 
     dhandler = DataHandler()
     dDrawer = DataDrawer()
 
-    for i in range(1):
-
-        curr_data = dhandler.fetch_all(cache=True)
-
-        print(curr_data)
-        dDrawer.draw_weather(curr_data)
-
-        sleep(0.1)
+    while True:
+        try:
+            curr_data = dhandler.fetch_all(cache=False)
+            #just save matplotlib plots
+            print(curr_data)
+            dDrawer.draw_weather(curr_data)
+        except Exception as e:
+            print(e)
+            pass
+        sleep(60)
