@@ -1,6 +1,5 @@
 import platform
 from PIL import Image, ImageDraw, ImageFont
-from time import sleep
 from datetime import datetime, timezone
 import pytz
 
@@ -150,6 +149,6 @@ class DataDrawer:
         image.paste(temp_plot, (370, 180), temp_plot)
 
         epd.display(epd.getbuffer(image))
-        sleep(3)
-        epd.Clear()
-        epd.sleep()
+        #sleep(3)
+        #epd.Clear()
+        #epd.sleep()
