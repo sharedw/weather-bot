@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import requests  # noqa
 import yaml
+import matplotlib.pyplot as plt
 
 
 class DataHandler:
@@ -94,16 +95,47 @@ class DataHandler:
 
         return conditions
     
+    def plot_temp(self):
+        var = 'tempf'
+        df = self.con.sql(f"""select date AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago' AS cst_time,
+                    {var} from observations 
+                    where date >= CURRENT_DATE - INTERVAL 3 DAY""").df()
+
+        df['mov'] = df[var].rolling(1).mean()
+        dpi = 129
+        figsize = (3.5, 2.5)
+
+        fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
+
+
+        fig.patch.set_alpha(0.0)       # Transparent figure background
+        ax.set_facecolor('none')       # Transparent plot background
+
+        unique_days = df['cst_time'].dt.normalize().drop_duplicates()
+        plt.xticks(unique_days, unique_days.dt.strftime('%a'), rotation=0, fontsize=12, fontweight='bold')
+        plt.xlim(unique_days.min(), unique_days.max())
+        plt.yticks(rotation=0, fontsize=14, fontweight='bold')
+        ax.set_ylabel('Temp', fontsize=14, fontweight='bold', fontname='DejaVu Sans Mono')
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.plot(df['cst_time'], df['mov'], color='black', linewidth=3)
+        #ax.plot(df['cst_time'], df[var])
+
+
+        plt.tight_layout()
+        plt.savefig("plots/temperature.png", dpi=129, bbox_inches='tight')
+        return 
 
     def plot_rain(self):
-        
-        return
+
+        return 
 
     def fetch_all(self, cache=False):
         if not cache:
             curr_data = self.fetch_weather_data()
             curr_data.update(self.fetch_weatherapi_data())
             self.insert_data(curr_data)
+            self.plot_temp()
         else:
             curr_data = self.query_latest_data().df().to_dict(orient="records")[0]
         return curr_data

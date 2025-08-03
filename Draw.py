@@ -3,7 +3,8 @@ from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timezone
 import pytz
 
-if platform.system() == "Windowsdfasfa":
+if platform.system() == "Windows":
+    print('Windows')
     import mock_epd as epd7in5_V2
 
     title_font_path = "C:/Windows/Fonts/segoeui.ttf"
@@ -43,6 +44,10 @@ class DataDrawer:
         title_font = ImageFont.truetype(title_font_path, 32)
         large_font = ImageFont.truetype(large_font_path, 72)
         small_font = ImageFont.truetype(small_font_path, 24)
+        small_font_options = {
+            'font':ImageFont.truetype(small_font_path, 20),
+            "anchor":"lm",
+        }
 
         # Title
         draw.text((400, 20), f"{CITY}", font=title_font, fill=0, anchor="mm")
@@ -60,18 +65,14 @@ class DataDrawer:
             draw.text(
                 (W / 2, 60),
                 f"{curr_data['alert']}",
-                font=ImageFont.truetype(small_font_path, 16),
-                fill=0,
-                anchor="mm",
+                **small_font_options
             )
 
         # description
         draw.text(
             (W / 2, 140),
             f"{curr_data['text']}",
-            font=small_font,
-            fill=0,
-            anchor="mm",
+                **small_font_options
         )
 
         # Main Temp
@@ -117,16 +118,12 @@ class DataDrawer:
         draw.text(
             (600, 240),
             f"Temp: {curr_data['tempf']}°F",
-            font=small_font,
-            fill=0,
-            anchor="lm",
+            **small_font_options
         )
         draw.text(
             (600, 265),
             f"Humidity: {curr_data['humidity']}%",
-            font=small_font,
-            fill=0,
-            anchor="lm",
+            **small_font_options
         )
         draw.text(
             (600, 290),
