@@ -3,13 +3,14 @@ from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timezone
 import pytz
 
-if platform.system() == "Windows":
+if platform.system() == "Windowsdfasfa":
     import mock_epd as epd7in5_V2
 
     title_font_path = "C:/Windows/Fonts/segoeui.ttf"
     large_font_path = "C:/Windows/Fonts/segoeui.ttf"
     small_font_path = "C:/Windows/Fonts/tahoma.ttf"
 else:
+    print('LINUX')
     from waveshare_epd import epd7in5_V2  # noqa
 
     title_font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
