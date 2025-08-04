@@ -127,7 +127,39 @@ class DataHandler:
         return 
 
     def plot_rain(self):
+        var = 'monthlyrainin'
+        df = self.con.sql(f"""
+            SELECT date AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago' AS cst_time,
+                {var}
+            FROM observations
+            WHERE EXTRACT(MONTH FROM date AT TIME ZONE 'America/Chicago') = EXTRACT(MONTH FROM CURRENT_DATE)
+            AND EXTRACT(YEAR FROM date AT TIME ZONE 'America/Chicago') = EXTRACT(YEAR FROM CURRENT_DATE)
+        """).df()
 
+        df['mov'] = df[var].rolling(1).mean()
+        dpi = 129
+        figsize = (3.5, 2.5)
+
+        fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
+
+        fig.patch.set_alpha(0.0)
+        ax.set_facecolor('none')
+
+        _, ymax = ax.get_ylim()
+        if ymax < 2:
+            ax.set_ylim(0, 5)
+
+        unique_days = df['cst_time'].dt.normalize().drop_duplicates()
+        plt.xticks(unique_days, unique_days.dt.strftime('%a'), rotation=0, fontsize=12, fontweight='bold')
+        plt.xlim(unique_days.min(), unique_days.max())
+        plt.yticks(rotation=0, fontsize=14, fontweight='bold')
+        ax.set_ylabel('Temp', fontsize=14, fontweight='bold', fontname='DejaVu Sans Mono')
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.plot(df['cst_time'], df['mov'], color='black', linewidth=3)
+        plt.tight_layout()
+        plt.savefig("plots/rain.png", dpi=129, bbox_inches='tight')
+        print("PLOT GOT SAVEDF")
         return 
 
     def fetch_all(self, cache=False):
@@ -135,9 +167,12 @@ class DataHandler:
             curr_data = self.fetch_weather_data()
             curr_data.update(self.fetch_weatherapi_data())
             self.insert_data(curr_data)
-            self.plot_temp()
+
         else:
             curr_data = self.query_latest_data().df().to_dict(orient="records")[0]
+        
+        self.plot_temp()
+        self.plot_rain()
         return curr_data
 
 

@@ -35,6 +35,7 @@ class DataDrawer:
         self.epd = epd7in5_V2.EPD()
         self.epd.init()
         self.epd.Clear()
+        self.counter = 0
 
     def draw_weather(self, curr_data, graph_data=None):
         W, H = (800, 480)
@@ -149,7 +150,18 @@ class DataDrawer:
         )
         image.paste(temp_plot, (370, 180), temp_plot)
 
-        self.epd.display(self.epd.getbuffer(image))
+        rain_plot = (
+            Image.open("plots/rain.png")
+            .convert("RGBA")
+            #resize((800, 800), Image.BICUBIC)
+        )
+        image.paste(rain_plot, (0, 180), rain_plot)
+
+        self.counter = (self.counter + 1) % 11  # cycles 0–10
+        if self.counter == 0:
+            self.epd.display(self.epd.getbuffer(image))
+        else:
+            self.epd.display(self.epd.getbuffer(image))
         #sleep(3)
         #epd.Clear()
         #epd.sleep()
