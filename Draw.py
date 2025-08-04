@@ -30,10 +30,13 @@ def bigint_to_time(bigint):
 
 
 class DataDrawer:
-    def draw_weather(self, curr_data, graph_data=None):
+
+    def __init__(self):
         epd = epd7in5_V2.EPD()
         epd.init()
         epd.Clear()
+
+    def draw_weather(self, curr_data, graph_data=None):
         W, H = (800, 480)
         image = Image.new(
             "1", (W, H), 255
@@ -146,7 +149,7 @@ class DataDrawer:
         )
         image.paste(temp_plot, (370, 180), temp_plot)
 
-        epd.display(epd.getbuffer(image))
+        self.epd.display(self.epd.getbuffer(image))
         #sleep(3)
         #epd.Clear()
         #epd.sleep()
