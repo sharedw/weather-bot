@@ -64,7 +64,6 @@ class DataDrawer:
         )
 
         # alerts
-        print(curr_data)
         if curr_data["alert"] != "":
             draw.text(
                 (W / 2, 60),
@@ -97,7 +96,14 @@ class DataDrawer:
 
         # rain stats
         draw.text(
-            (10, 180),
+            (200, 160),
+            "Rain",
+            font=ImageFont.truetype(small_font_path, 32)
+
+        )
+
+        draw.text(
+            (30, 207),
             f"Daily: {curr_data['dailyrainin']:.2f}, Event: {curr_data['eventrainin']:.2f} Month: {curr_data['monthlyrainin']:.2f}",
             **small_font_options 
         )
@@ -106,7 +112,7 @@ class DataDrawer:
             Image.open("plots/rain.png")
             .convert("RGBA")
         )
-        image.paste(rain_plot, (-30, 240), rain_plot)
+        image.paste(rain_plot, (-30, 215), rain_plot)
 
         # temp stats
         draw.text(
@@ -123,7 +129,7 @@ class DataDrawer:
             Image.open("plots/temperature.png")
             .convert("RGBA")
         )
-        image.paste(temp_plot, (370, 240), temp_plot)
+        image.paste(temp_plot, (365, 215), temp_plot)
 
         self.counter = (self.counter + 1) % 11  # cycles 0–10
         if self.counter == 0:

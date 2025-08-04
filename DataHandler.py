@@ -52,7 +52,6 @@ class DataHandler:
         self.con.register("new_data", df)
         self.con.execute(f"INSERT INTO {self.TABLE_NAME} SELECT * FROM new_data")
         df = self.con.sql("select * from observations").df()
-        print(df)
         return
 
     def query(self, query_text):
@@ -103,7 +102,7 @@ class DataHandler:
 
         df['mov'] = df[var].rolling(1).mean()
         dpi = 129
-        figsize = (3.5, 2)
+        figsize = (3.5, 2.2)
 
         fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
 
@@ -113,7 +112,7 @@ class DataHandler:
 
         unique_days = df['cst_time'].dt.normalize().drop_duplicates()
         plt.xticks(unique_days, unique_days.dt.strftime('%a'), rotation=0, fontsize=12, fontweight='bold')
-        plt.xlim(unique_days.min(), unique_days.max())
+        plt.xlim(unique_days.min(),df['cst_time'].max()+ pd.Timedelta(hours=1))
         plt.yticks(rotation=0, fontsize=14, fontweight='bold')
         ax.set_ylabel('Temp', fontsize=14, fontweight='bold', fontname='DejaVu Sans Mono')
         ax.spines['top'].set_visible(False)
@@ -124,6 +123,7 @@ class DataHandler:
 
         plt.tight_layout()
         plt.savefig("plots/temperature.png", dpi=129, bbox_inches='tight')
+        print(df)
         return 
 
     def plot_rain(self):
@@ -138,7 +138,7 @@ class DataHandler:
 
         df['mov'] = df[var].rolling(1).mean()
         dpi = 129
-        figsize = (3.5, 2)
+        figsize = (3.5, 2.2)
 
         fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
 
@@ -151,7 +151,7 @@ class DataHandler:
 
         unique_days = df['cst_time'].dt.normalize().drop_duplicates()
         plt.xticks(unique_days, unique_days.dt.strftime('%a'), rotation=0, fontsize=12, fontweight='bold')
-        plt.xlim(unique_days.min(), unique_days.max())
+        plt.xlim(unique_days.min(),df['cst_time'].max()+ pd.Timedelta(hours=1))
         plt.yticks(rotation=0, fontsize=14, fontweight='bold')
         ax.set_ylabel('Temp', fontsize=14, fontweight='bold', fontname='DejaVu Sans Mono')
         ax.spines['top'].set_visible(False)
@@ -159,7 +159,6 @@ class DataHandler:
         ax.plot(df['cst_time'], df['mov'], color='black', linewidth=3)
         plt.tight_layout()
         plt.savefig("plots/rain.png", dpi=129, bbox_inches='tight')
-        print("PLOT GOT SAVEDF")
         return 
 
     def fetch_all(self, cache=False):
