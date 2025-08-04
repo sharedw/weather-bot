@@ -32,9 +32,9 @@ def bigint_to_time(bigint):
 class DataDrawer:
 
     def __init__(self):
-        epd = epd7in5_V2.EPD()
-        epd.init()
-        epd.Clear()
+        self.epd = epd7in5_V2.EPD()
+        self.epd.init()
+        self.epd.Clear()
 
     def draw_weather(self, curr_data, graph_data=None):
         W, H = (800, 480)
