@@ -103,7 +103,7 @@ class DataHandler:
 
         df['mov'] = df[var].rolling(1).mean()
         dpi = 129
-        figsize = (3.5, 2.5)
+        figsize = (3.5, 2)
 
         fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
 
@@ -138,7 +138,7 @@ class DataHandler:
 
         df['mov'] = df[var].rolling(1).mean()
         dpi = 129
-        figsize = (3.5, 2.5)
+        figsize = (3.5, 2)
 
         fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
 
@@ -147,7 +147,7 @@ class DataHandler:
 
         _, ymax = ax.get_ylim()
         if ymax < 2:
-            ax.set_ylim(0, 5)
+            ax.set_ylim(0, 2)
 
         unique_days = df['cst_time'].dt.normalize().drop_duplicates()
         plt.xticks(unique_days, unique_days.dt.strftime('%a'), rotation=0, fontsize=12, fontweight='bold')

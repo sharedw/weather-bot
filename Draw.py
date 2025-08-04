@@ -74,7 +74,7 @@ class DataDrawer:
 
         # description
         draw.text(
-            (W / 2, 140),
+            (W / 2, 144),
             f"{curr_data['text']}",
                 **small_font_options
         )
@@ -85,11 +85,11 @@ class DataDrawer:
         )
 
         weather_icon = (
-            Image.open("icons/day/partly_cloudy.png")
+            Image.open("icons/day/rainy.png")
             .convert("RGBA")
             .resize((75, 75), Image.NEAREST)
         )
-        image.paste(weather_icon, (550, 80), weather_icon)
+        image.paste(weather_icon, (550, 50), weather_icon)
 
         # Divider
         draw.line([(100, 160), (700, 160)], fill=0, width=2)
@@ -97,65 +97,33 @@ class DataDrawer:
 
         # rain stats
         draw.text(
-            (200, 240),
-            f"Daily Rain: {curr_data['dailyrainin']} in",
-            font=small_font,
-            fill=0,
-            anchor="mm",
+            (10, 180),
+            f"Daily: {curr_data['dailyrainin']:.2f}, Event: {curr_data['eventrainin']:.2f} Month: {curr_data['monthlyrainin']:.2f}",
+            **small_font_options 
         )
-        draw.text(
-            (200, 265),
-            f"Event Rain: {curr_data['eventrainin']} in",
-            font=small_font,
-            fill=0,
-            anchor="mm",
-        )
-        draw.text(
-            (200, 290),
-            f"Monthly Rain: {curr_data['monthlyrainin']} in",
-            font=small_font,
-            fill=0,
-            anchor="mm",
-        )
-
-        # temp stats
-        draw.text(
-            (600, 240),
-            f"Temp: {curr_data['tempf']}°F",
-            **small_font_options
-        )
-        draw.text(
-            (600, 265),
-            f"Humidity: {curr_data['humidity']}%",
-            **small_font_options
-        )
-        draw.text(
-            (600, 290),
-            f"Feels Like: {round(curr_data['feelsLike'], 1)}°F",
-            font=small_font,
-            fill=0,
-            anchor="lm",
-        )
-        draw.text(
-            (600, 315),
-            f"Wind Speed/Gust: {round(curr_data['windspeedmph'], 1)}, {round(curr_data['windgustmph'], 1)} mph",
-            font=small_font,
-            fill=0,
-            anchor="mm",
-        )
-        temp_plot = (
-            Image.open("plots/temperature.png")
-            .convert("RGBA")
-            #resize((800, 800), Image.BICUBIC)
-        )
-        image.paste(temp_plot, (370, 180), temp_plot)
 
         rain_plot = (
             Image.open("plots/rain.png")
             .convert("RGBA")
-            #resize((800, 800), Image.BICUBIC)
         )
-        image.paste(rain_plot, (0, 180), rain_plot)
+        image.paste(rain_plot, (-30, 240), rain_plot)
+
+        # temp stats
+        draw.text(
+            (410, 180),
+            f"Temp: {curr_data['tempf']}°F, Humidity: {curr_data['humidity']}%",
+            **small_font_options
+        )
+        draw.text(
+            (410, 210),
+            f"Feels Like: {round(curr_data['feelsLike'], 1)}°F, Wind Speed: {round(curr_data['windspeedmph'], 1)}",
+            **small_font_options
+        )
+        temp_plot = (
+            Image.open("plots/temperature.png")
+            .convert("RGBA")
+        )
+        image.paste(temp_plot, (370, 240), temp_plot)
 
         self.counter = (self.counter + 1) % 11  # cycles 0–10
         if self.counter == 0:
