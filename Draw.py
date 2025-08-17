@@ -66,8 +66,8 @@ class DataDrawer:
         # alerts
         if curr_data["alert"] != "":
             draw.text(
-                (W / 2, 60),
-                f"{curr_data['alert']}",
+                (20, 55),
+                f"{curr_data['alert']}", 
                 **small_font_options
             )
 
@@ -122,7 +122,7 @@ class DataDrawer:
         )
         draw.text(
             (410, 210),
-            f"Feels Like: {round(curr_data['feelsLike'], 1)}°F, Wind Speed: {round(curr_data['windspeedmph'], 1)}",
+            f"Feels Like: {round(curr_data['feelsLike'], 1)}°F, Wind Speed: {round(curr_data['windspeedmph'], 1)} mph",
             **small_font_options
         )
         temp_plot = (

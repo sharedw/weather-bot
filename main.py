@@ -16,9 +16,11 @@ if __name__ == "__main__":
             print(curr_data)
             dDrawer.draw_weather(curr_data)
         except KeyboardInterrupt:    
+            dDrawer.epd.Clear()
             dDrawer.epd.epdconfig.module_exit(cleanup=True)
             exit()
         except Exception as e:
             print(e)
             pass
         sleep(60)
+
