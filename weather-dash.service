@@ -1,0 +1,16 @@
+[Unit]
+Description=Weather Dashboard for Larry
+After=network.target
+
+[Service]
+WorkingDirectory=/home/sharedw/weather-bot
+ExecStart=/usr/bin/python3 -u /home/sharedw/weather-bot/main.py
+Restart=always
+RestartSec=30
+User=root
+Environment="PATH=/usr/bin:/usr/local/bin:/home/sharedw/.local/bin"
+StandardOutput=append:/home/sharedw/weather-bot/weather-dash.log
+StandardError=append:/home/sharedw/weather-bot/weather-dash.log
+
+[Install]
+WantedBy=multi-user.target
