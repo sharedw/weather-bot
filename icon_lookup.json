@@ -1,0 +1,194 @@
+{
+  "1000": {
+    "night": "icons\\wi-night-clear.png",
+    "day": "icons\\wi-day-sunny.png"
+  },
+  "1003": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-cloudy.png"
+  },
+  "1006": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-cloudy.png"
+  },
+  "1009": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-sunny-overcast.png"
+  },
+  "1030": {
+    "night": "icons\\wi-night-fog.png",
+    "day": "icons\\wi-day-fog.png"
+  },
+  "1063": {
+    "night": "icons\\wi-night-sprinkle.png",
+    "day": "icons\\wi-day-sprinkle.png"
+  },
+  "1066": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-cloudy.png"
+  },
+  "1069": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-cloudy.png"
+  },
+  "1072": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-cloudy.png"
+  },
+  "1087": {
+    "night": "icons\\wi-night-cloudy.png",
+    "day": "icons\\wi-day-cloudy.png"
+  },
+  "1114": {
+    "night": "icons\\wi-night-alt-snow-wind.png",
+    "day": "icons\\wi-day-snow-wind.png"
+  },
+  "1117": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1135": {
+    "night": "icons\\wi-night-fog.png",
+    "day": "icons\\wi-day-fog.png"
+  },
+  "1147": {
+    "night": "icons\\wi-night-fog.png",
+    "day": "icons\\wi-day-fog.png"
+  },
+  "1150": {
+    "night": "icons\\wi-night-sprinkle.png",
+    "day": "icons\\wi-day-sprinkle.png"
+  },
+  "1153": {
+    "night": "icons\\wi-night-sprinkle.png",
+    "day": "icons\\wi-day-sprinkle.png"
+  },
+  "1168": {
+    "night": "icons\\wi-night-alt-sleet.png",
+    "day": "icons\\wi-day-rain-mix.png"
+  },
+  "1171": {
+    "night": "icons\\wi-night-alt-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1180": {
+    "night": "icons\\wi-night-sprinkle.png",
+    "day": "icons\\wi-day-sprinkle.png"
+  },
+  "1183": {
+    "night": "icons\\wi-night-sprinkle.png",
+    "day": "icons\\wi-day-sprinkle.png"
+  },
+  "1186": {
+    "night": "icons\\wi-night-rain.png",
+    "day": "icons\\wi-day-rain.png"
+  },
+  "1189": {
+    "night": "icons\\wi-night-rain.png",
+    "day": "icons\\wi-day-rain.png"
+  },
+  "1192": {
+    "night": "icons\\wi-night-rain.png",
+    "day": "icons\\wi-day-rain.png"
+  },
+  "1195": {
+    "night": "icons\\wi-night-rain.png",
+    "day": "icons\\wi-day-rain.png"
+  },
+  "1198": {
+    "night": "icons\\wi-night-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1201": {
+    "night": "icons\\wi-night-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1204": {
+    "night": "icons\\wi-night-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1207": {
+    "night": "icons\\wi-night-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1210": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1213": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1216": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1219": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1222": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1225": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1237": {
+    "night": "icons\\wi-night-hail.png",
+    "day": "icons\\wi-day-hail.png"
+  },
+  "1240": {
+    "night": "icons\\wi-night-sprinkle.png",
+    "day": "icons\\wi-day-sprinkle.png"
+  },
+  "1243": {
+    "night": "icons\\wi-night-rain.png",
+    "day": "icons\\wi-day-rain.png"
+  },
+  "1246": {
+    "night": "icons\\wi-night-storm-showers.png",
+    "day": "icons\\wi-day-storm-showers.png"
+  },
+  "1249": {
+    "night": "icons\\wi-night-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1252": {
+    "night": "icons\\wi-night-sleet.png",
+    "day": "icons\\wi-day-sleet.png"
+  },
+  "1255": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1258": {
+    "night": "icons\\wi-night-snow.png",
+    "day": "icons\\wi-day-snow.png"
+  },
+  "1261": {
+    "night": "icons\\wi-night-hail.png",
+    "day": "icons\\wi-day-hail.png"
+  },
+  "1264": {
+    "night": "icons\\wi-night-hail.png",
+    "day": "icons\\wi-day-hail.png"
+  },
+  "1273": {
+    "night": "icons\\wi-night-thunderstorm.png",
+    "day": "icons\\wi-day-thunderstorm.png"
+  },
+  "1276": {
+    "night": "icons\\wi-night-thunderstorm.png",
+    "day": "icons\\wi-day-thunderstorm.png"
+  },
+  "1279": {
+    "night": "icons\\wi-night-thunderstorm.png",
+    "day": "icons\\wi-day-thunderstorm.png"
+  },
+  "1282": {
+    "night": "icons\\wi-night-thunderstorm.png",
+    "day": "icons\\wi-day-cloudy.png"
+  }
+}

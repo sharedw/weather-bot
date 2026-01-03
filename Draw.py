@@ -2,7 +2,7 @@ import platform
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timezone
 import pytz
-
+import json
 if platform.system() == "Windows":
 	print('Windows')
 	import mock_epd as epd7in5_V2
@@ -20,6 +20,9 @@ else:
 
 CITY = "Larry's Backyard (Copperas Cove)"
 
+with open("icon_lookup.json") as f:
+    ICON_LOOKUP = json.load(f)
+
 
 def bigint_to_time(bigint):
 	dt_utc = datetime.fromtimestamp(bigint / 1000, tz=timezone.utc)
@@ -27,6 +30,11 @@ def bigint_to_time(bigint):
 	dt_cst = dt_utc.astimezone(cst)
 	cst_str = dt_cst.strftime("%H:%M:%S")
 	return cst_str
+
+def get_icon_path(curr_data):
+	code, icon = curr_data['code'], curr_data['icon']
+	day_night = 'day' if 'day' in icon else 'night' if 'night' in icon else 'day'
+	return ICON_LOOKUP.get(code, {}).get(day_night,'icons\\wi-day-sunny.png')
 
 
 class DataDrawer:
@@ -83,9 +91,9 @@ class DataDrawer:
 		draw.text(
 			(400, 100), f"{curr_data['tempf']}°F", font=large_font, fill=0, anchor="mm"
 		)
-
+		icon_file_name = get_icon_path(curr_data)
 		weather_icon = (
-			Image.open("icons/day/rainy.png")
+			Image.open(icon_file_name)
 			.convert("RGBA")
 			.resize((75, 75), Image.NEAREST)
 		)
@@ -149,6 +157,3 @@ class DataDrawer:
 				self.epd.height - 1
 			)
 
-		#sleep(3)
-		#epd.Clear()
-		#epd.sleep()
