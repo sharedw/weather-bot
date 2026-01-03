@@ -35,6 +35,7 @@ class DataDrawer:
         self.epd = epd7in5_V2.EPD()
         self.epd.init()
         self.epd.Clear()
+        self.epd.init_part()
         self.counter = 0
 
     def draw_weather(self, curr_data, graph_data=None):
