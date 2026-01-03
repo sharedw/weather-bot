@@ -140,7 +140,15 @@ class DataDrawer:
 			self.epd.display(self.epd.getbuffer(image))
 			self.epd.init_part()
 		else:
-			self.epd.display_Partial(self.epd.getbuffer(image))
+			buf = self.epd.getbuffer(image)
+
+			self.epd.display_Partial(
+				buf,
+				0, 0,
+				self.epd.width - 1,
+				self.epd.height - 1
+			)
+
 		#sleep(3)
 		#epd.Clear()
 		#epd.sleep()
