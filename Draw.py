@@ -3,6 +3,8 @@ from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timezone
 import pytz
 import json
+from pathlib import Path
+
 if platform.system() == "Windows":
 	print('Windows')
 	import mock_epd as epd7in5_V2
@@ -20,6 +22,10 @@ else:
 
 CITY = "Larry's Backyard (Copperas Cove)"
 
+
+
+BASE_DIR = Path.cwd()          # working directory
+ICONS_DIR = BASE_DIR / "icons"
 with open("icon_lookup.json") as f:
     ICON_LOOKUP = json.load(f)
 
@@ -32,9 +38,22 @@ def bigint_to_time(bigint):
 	return cst_str
 
 def get_icon_path(curr_data):
-	code, icon = curr_data['code'], curr_data['icon']
-	day_night = 'day' if 'day' in icon else 'night' if 'night' in icon else 'day'
-	return ICON_LOOKUP.get(code, {}).get(day_night,'icons\\wi-day-sunny.png')
+    code = curr_data["code"]
+    icon = curr_data["icon"]
+
+    day_night = (
+        "day" if "day" in icon
+        else "night" if "night" in icon
+        else "day"
+    )
+
+    filename = ICON_LOOKUP.get(code, {}).get(
+        day_night,
+        "wi-day-sunny.png"
+    )
+
+    return ICONS_DIR / filename
+
 
 
 class DataDrawer:
