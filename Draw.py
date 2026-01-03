@@ -118,12 +118,12 @@ class DataDrawer:
         # temp stats
         draw.text(
             (410, 180),
-            f"Temp: {curr_data['tempf']}°F, Humidity: {curr_data['humidity']}%",
+            f"Feels Like: {round(curr_data['feelsLike'], 1)}°F, Humidity: {curr_data['humidity']}%",
             **small_font_options
         )
         draw.text(
             (410, 210),
-            f"Feels Like: {round(curr_data['feelsLike'], 1)}°F, Wind Speed: {round(curr_data['windspeedmph'], 1)} mph",
+            f"Wind Speed: {round(curr_data['windspeedmph'], 1)} mph",
             **small_font_options
         )
         temp_plot = (
